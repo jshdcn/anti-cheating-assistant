@@ -23,9 +23,15 @@ def main(params: dict):
     business_name = params['business_name']
     business_step_infos = params['std_info'] if isinstance(params['std_info'], list) else json.loads(params['std_info'])
     
-    roles = list(set([role for step in business_step_infos for role in [step['from_role'], step['to_role']]]))
+    # 保持角色顺序为首次出现顺序，以保证表格列和图的一致性
+    roles = []
+    for step in business_step_infos:
+        for r in (step.get('from_role', ''), step.get('to_role', '')):
+            if r and r not in roles:
+                roles.append(r)
     length = len(roles)
-    graph_context = ["erDiagram"]
+    # 使用 flowchart 表示法，后续以 three_flow_table 为准构造图中的连线和标签
+    graph_context = ["graph LR"]
     # three_flow_table 采用 Markdown 表格格式：标题行、分隔行、每个步骤的 C/V 标记。
     # C 表示角色可控，V 表示角色可见。
     table_context = ["||步骤|载体|" + "|".join(roles) + "|", "|--|--|--|" + "--|" * length]
@@ -50,9 +56,12 @@ def main(params: dict):
         from_multiple = business_step_info.get('from_multiple', False)
         to_multiple = business_step_info.get('to_multiple', False)
         
-        graph_line = f'  "{from_role}" {"}o" if from_multiple else "||"}--{"o{" if to_multiple else "||"} "{to_role}" : "{step_no}.{carrier_table[carrier]}"'
+        # 使用表中的信息构造 graph 连接，label 使用 步骤号.载体
+        label = f"{step_no}.{carrier_table[carrier]}"
+        graph_line = f'"{from_role}" -->|"{label}"| "{to_role}"'
         table_line = f"|{step_no}|{step_name}|{carrier_table[carrier]}|"
-        value_line = f"('{business_name}',{step_no},'{step_name}',{carrier},'{from_role}','{to_role}',{str(from_controllable).lower()},{str(to_controllable).lower()},'{other_visible_role_string}',{str(from_multiple).lower()},{str(to_controllable).lower()})"
+        # 修复 value_line 中重复使用 to_controllable 的错误，最后一个字段应为 to_multiple
+        value_line = f"('{business_name}',{step_no},'{step_name}',{carrier},'{from_role}','{to_role}',{str(from_controllable).lower()},{str(to_controllable).lower()},'{other_visible_role_string}',{str(from_multiple).lower()},{str(to_multiple).lower()})"
         
         for role in roles:
             if (role == from_role and from_controllable) or (role == to_role and to_controllable):
