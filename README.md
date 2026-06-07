@@ -33,4 +33,4 @@ risk-control-assistant/
 
 ## 开源协议
 
-【学术著作权责声明】(LICENSE)
+[学术著作权责声明](LICENSE)
