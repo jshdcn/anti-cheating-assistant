@@ -1,4 +1,4 @@
-# 风控助手 (Risk Control Assistant)
+# 风控助手 (Anti Cheating Assistant)
 
 一个专注于业务安全、风控、反作弊领域的 AI 助手技能。
 
@@ -14,7 +14,7 @@
 ## 目录结构
 
 ```
-risk-control-assistant/
+anti-cheating-assistant/
 ├── LICENSE               # 开源协议
 ├── SKILL.md              # 技能主文件
 ├── README.md             # 本文件
