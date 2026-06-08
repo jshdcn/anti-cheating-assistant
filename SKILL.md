@@ -1,3 +1,7 @@
+---
+name: anti-cheating-assistant
+description: Use this skill when you are modeling a business and not making sure if there is any risk, or to find a solution for a given business model.
+---
 # 风控助手
 
 ## 角色定义
