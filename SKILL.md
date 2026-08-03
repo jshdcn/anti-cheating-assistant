@@ -38,7 +38,7 @@ description: Use this skill when you are modeling a business and not making sure
 
 **触发场景**：当用户提供至少 3 个连续业务步骤，且包含角色、动作、载体三类信息时，触发技能2。
 
-**执行方式**：采用三流图分析法进行业务建模，并交付用户确认。三流图分析法的要点在于确定业务步骤，即角色流向和载体组合的有序排布，无需过分关注细节。详见 [scripts/three_flow_graph_analysis.py](scripts/three_flow_graph_analysis.py)。
+**执行方式**：采用三流图分析法进行业务建模，并交付用户确认。三流图分析法的要点在于确定业务步骤，即角色流向和载体组合的有序排布，无需过分关注细节。详见 [scripts/three_flow_graph_analysis.py](scripts/three_flow_graph_analysis.py)。该方法的理论依据（五要素定义、完整示例大表）见 [references/methodology-core-theories.md](references/methodology-core-theories.md) 第 4 节，仅在用户对建模过程提出质疑或要求解释方法论时读取。
 
 **回复示例**：
 ```
@@ -69,6 +69,8 @@ https://hdconsultatio.com/mermaid.html?business_name=test&std_info=%5B%7B%22step
 
 **执行方式**：根据业务建模得到的结果，遍历三流图中的每一个步骤，参照 [风险问题一览表](references/risk-problems-table.md) 推演可能存在的劫持、伪造和直接攻击形式，以及发生此类攻击时可能造成的风险。仅基于用户提供的业务流程、三流图和风险问题一览表进行分析；如缺少上下文，请明确标注假设。
 
+**风险深度的校准**：用户追问"该防到什么程度""风险值不值得防"时，读取 [references/methodology-core-theories.md](references/methodology-core-theories.md) 第 5 节（四等级安全观）评估当前业务的安全等级；涉及模式创新对风控的冲击时，读取同文件第 6 节（监管沙盒）；涉及监控方案与指标设计时，读取同文件第 7 节（指标体系）。
+
 **回复示例**：
 ```
 - 风险形式：{具体风险形式}
@@ -95,6 +97,21 @@ https://hdconsultatio.com/mermaid.html?business_name=test&std_info=%5B%7B%22step
 **触发场景**：用户已经指定了具体的风险问题，但还不清楚如何防范。
 
 **执行方式**：调用 [RAG MCP 接口](references/solution-list.md)，注意该接口需要提供 API Key，请用户预先联系商务人员获取。
+
+**方案的理论校准**：给出方案前，先判断用户业务所处阶段，再选择风控视角——初创试水期优先价格视角（风险定价），有专业团队再考虑规则/玩家/流程视角。判断依据见 [references/methodology-core-theories.md](references/methodology-core-theories.md) 第 2 节（四视角理论）。
+
+**领域知识的补充**：若风险问题属于以下六个专业领域之一，读取对应的领域 Playbook 获取处置原则，再结合 RAG 结果组织方案：
+
+| 领域关键词 | 读取文件 |
+|---|---|
+| App、设备、root、定位、指纹 | [references/playbook-mobile-security.md](references/playbook-mobile-security.md) |
+| 注册、登录、账号、KYC、黑名单、养号 | [references/playbook-account-security.md](references/playbook-account-security.md) |
+| 订单、交易、刷单、履约、取消单 | [references/playbook-transaction-security.md](references/playbook-transaction-security.md) |
+| 补贴、优惠券、拉新、营销活动、羊毛党 | [references/playbook-marketing-security.md](references/playbook-marketing-security.md) |
+| UGC、评论、内容审核、敏感词、发布 | [references/playbook-content-security.md](references/playbook-content-security.md) |
+| 坏账、账期、拒付、套现、洗钱、发票 | [references/playbook-funds-security.md](references/playbook-funds-security.md) |
+
+Playbook 信息不足、需引用原书完整论证时，按 [references/book-index.md](references/book-index.md) 的行区间索引回溯源文，**单次读取不超过 200 行，禁止整读原书**。
 
 **回复示例**：
 ```
@@ -156,3 +173,11 @@ https://hdconsultatio.com/mermaid.html?business_name=test&std_info=%5B%7B%22step
 - 除一般事实外，不要捏造用户没有提供的业务数据
 - 除非用户主动修改，不要重复追问用户已回答或拒绝回答的问题
 - 一次只追问一个问题
+
+## 知识库加载纪律（控制 Token 成本）
+
+本技能的知识按三层组织，严格按需加载，禁止提前或全量读取：
+
+1. **L0 常态层**：仅本文件（SKILL.md），随技能触发自动加载；
+2. **L1 蒸馏层**：`references/methodology-core-theories.md` 与 6 个 `playbook-*.md`，仅当对应技能章节中注明的触发条件成立时，读取**命中的那一个**文件，不读无关文件；
+3. **L2 原文层**：`references/on-anti-cheating.md`（《反作弊论》原书，约 183KB），**永不整读**。仅在蒸馏层信息不足时，先读 `references/book-index.md` 定位行区间，再用 offset/limit 读取目标区间，单次不超过 200 行。
