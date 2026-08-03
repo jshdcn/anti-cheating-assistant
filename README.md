@@ -15,14 +15,23 @@
 
 ```
 anti-cheating-assistant/
-├── LICENSE               # 开源协议
-├── SKILL.md              # 技能主文件
-├── README.md             # 本文件
-├── references/           # 参考资料目录
-│   ├── solution-list.md    # MCP 接口文档
-│   └── risk-problems-table.md    # 风险问题一览表
-└── scripts/              # 脚本目录
-    └── three_flow_graph_analysis.py  # 三流图分析工作流
+├── LICENSE                              # 开源协议
+├── SKILL.md                             # 技能主文件
+├── README.md                            # 本文件
+├── references/                          # 参考资料目录
+│   ├── book-index.md                   # 参考资料索引
+│   ├── methodology-core-theories.md    # 核心理论
+│   ├── on-anti-cheating.md             # 反作弊综述
+│   ├── playbook-account-security.md    # 账号安全手册
+│   ├── playbook-content-security.md    # 内容安全手册
+│   ├── playbook-funds-security.md      # 资金安全手册
+│   ├── playbook-marketing-security.md  # 营销安全手册
+│   ├── playbook-mobile-security.md     # 移动端安全手册
+│   ├── playbook-transaction-security.md # 交易安全手册
+│   ├── risk-problems-table.md         # 风险问题一览表
+│   └── solution-list.md               # 方案清单
+└── scripts/                             # 脚本目录
+    └── three_flow_graph_analysis.py    # 三流图分析工作流
 ```
 
 ## 使用限制
