@@ -4,6 +4,8 @@ name: refresh-slang-dict
 # 词典本体在 fork 里维护；本仓库每 30 分钟检查并提交新产物。
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
