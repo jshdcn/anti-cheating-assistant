@@ -25,7 +25,7 @@
 | 附录三 如何做交易安全 | 1385–1454 | 风险标签、风险定义（SOP/模型/立法）、风险防控 | playbook-transaction-security.md |
 | 附录四 如何做营销安全 | 1455–1754 | 营销四要素、ROI、奖励激励风控、支付核销风控 | playbook-marketing-security.md |
 | 附录五 如何做内容安全 | 1741–1799 | 采集安全、发布安全 | playbook-content-security.md |
-| 附录六 如何做资金安全 | 1800–1984 | 财产安全、信贷安全、支付安全（反洗钱/反套现/反恐怖融资/反二清/反虚开发票） | playbook-funds-security.md |
+| 附录六 如何做资金安全 | 1800–1984 | 财产安全、信贷安全、支付安全（反洗钱/反套现/反恐怖融资/反二清/反虚开发票） | playbook-financial-security.md |
 
 ## 关键小节速查
 

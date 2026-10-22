@@ -19,18 +19,21 @@ anti-cheating-assistant/
 ├── SKILL.md                             # 技能主文件
 ├── README.md                            # 本文件
 ├── references/                          # 参考资料目录
+│   ├── underground-slang-lexicon.md    # 黑话词典（1352 词条，上游同步+本地扩展）
+│   ├── underground-slang-index.md      # 行话词典词条索引
 │   ├── book-index.md                   # 参考资料索引
 │   ├── methodology-core-theories.md    # 核心理论
 │   ├── on-anti-cheating.md             # 反作弊论
 │   ├── playbook-account-security.md    # 账号安全手册
 │   ├── playbook-content-security.md    # 内容安全手册
-│   ├── playbook-funds-security.md      # 资金安全手册
+│   ├── playbook-financial-security.md  # 资金安全手册
 │   ├── playbook-marketing-security.md  # 营销安全手册
 │   ├── playbook-mobile-security.md     # 移动安全手册
 │   ├── playbook-transaction-security.md # 交易安全手册
 │   ├── risk-problems-table.md         # 风险问题一览表
 │   └── solution-list.md               # 方案清单
 └── scripts/                             # 脚本目录
+    ├── pull_slang_dict.py              # 拉取合并后的黑话词典
     └── three_flow_graph_analysis.py    # 三流图分析工作流
 ```
 

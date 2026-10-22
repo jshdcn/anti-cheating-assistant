@@ -109,9 +109,11 @@ https://hdconsultatio.com/mermaid.html?business_name=test&std_info=%5B%7B%22step
 | 订单、交易、刷单、履约、取消单 | [references/playbook-transaction-security.md](references/playbook-transaction-security.md) |
 | 补贴、优惠券、拉新、营销活动、羊毛党 | [references/playbook-marketing-security.md](references/playbook-marketing-security.md) |
 | UGC、评论、内容审核、敏感词、发布 | [references/playbook-content-security.md](references/playbook-content-security.md) |
-| 坏账、账期、拒付、套现、洗钱、发票 | [references/playbook-funds-security.md](references/playbook-funds-security.md) |
+| 坏账、账期、拒付、套现、洗钱、发票 | [references/playbook-financial-security.md](references/playbook-financial-security.md) |
 
 Playbook 信息不足、需引用原书完整论证时，按 [references/book-index.md](references/book-index.md) 的行区间索引回溯源文，**单次读取不超过 200 行，禁止整读原书**。
+
+**行话词典查询**：用户业务描述或风险分析中出现不理解的黑灰产行话、俚语、字母缩写时，先查 [references/underground-slang-index.md](references/underground-slang-index.md) 判断词条是否存在——不存在，直接结束，不要打开词典；存在，用 Grep 以词条名在 [references/underground-slang-lexicon.md](references/underground-slang-lexicon.md) 中定位，只读命中块（一词一块，“### 词条名”开头，到下一个“### ”为止）。索引未收录的别名、缩写拿不准时，直接对词典全文 Grep。索引里的条目形如 `别名（别名→主词）`；若写成 `别名（别名→主词 义2）`，表示该别名**只指第 2 个义项**（本地词条在义项正文里明写了“又称X”），不是整个词条的同义词，回答时别把两者混为一谈。**禁止整读词典**。块内**义项按 `1.` `2.` 编号、同一层级**，第二个义项通常是该词在**正常语境**下的意思——用户往往是见到某个词才来问，先判断他那句话落在哪个义项上，必要时都摆出来。尾行 `研判置信度：高/中` 是上游研判结果，可据此决定采信强度；尾行 `研判置信度：待核实` 指上游自己也未核定、或属本地扩展，引用时按未复核对待。**不同语种分节、不混排**（中文按拼音 A–Z，英文/葡萄牙语/印尼语/越南语/他加禄语各一节），索引里查不到时先想想是不是别的语种。**同一条目下并列的两个义项可能是两套口径**（上游未核定的与本地补充的并立），回答时两层都给，并说明哪层未经核实。索引里确实没有的词，据上下文自行研判并说明依据，不要断言“该词非黑灰产行话”。
 
 **回复示例**：
 ```
@@ -181,3 +183,4 @@ Playbook 信息不足、需引用原书完整论证时，按 [references/book-in
 1. **L0 常态层**：仅本文件（SKILL.md），随技能触发自动加载；
 2. **L1 蒸馏层**：`references/methodology-core-theories.md` 与 6 个 `playbook-*.md`，仅当对应技能章节中注明的触发条件成立时，读取**命中的那一个**文件，不读无关文件；
 3. **L2 原文层**：`references/on-anti-cheating.md`（《反作弊论》原书，约 183KB），**永不整读**。仅在蒸馏层信息不足时，先读 `references/book-index.md` 定位行区间，再用 offset/limit 读取目标区间，单次不超过 200 行。
+4. **L2 词典层**：`references/underground-slang-lexicon.md`（黑灰产行话词典，1352 词条 / 约 367KB，上游全量（含未核定档）+ 本地扩展合成；词典体例，`又作` 为词条级别名，义项按 `1.` `2.` 编号，尾行 `研判置信度：高/中/待核实`，**不同语种分节**（中文按拼音 A–Z，英文/葡萄牙语/印尼语/越南语/他加禄语各一节）），**永不整读**。仅在遇到不理解的黑灰产行话时，按技能 5“行话词典查询”的纪律：先查 `references/underground-slang-index.md` 判存在，再 Grep 定位、只读命中块。

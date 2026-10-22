@@ -1,0 +1,41 @@
+name: refresh-slang-dict
+
+# 从 jshdcn/underground-slang-lexicon 拉取合并后的词典产物。
+# 词典本体在 fork 里维护；本仓库每 30 分钟检查并提交新产物。
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-slang-dict
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 拉取
+        run: python3 scripts/pull_slang_dict.py
+
+      - name: 提交变更
+        run: |
+          git config user.name "slang-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add references/underground-slang-lexicon.md references/underground-slang-index.md
+          if git diff --cached --quiet; then
+            echo "无变化"
+            exit 0
+          fi
+          git commit -m "chore(dict): 同步黑话词典 $(date -u +%F)"
+          git push
