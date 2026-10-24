@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""从 jshdcn/underground-slang-lexicon 拉取合并后的词典产物。
-
-数据流：上游 threathunterX/underground-slang-lexicon →（本仓库 fork 定时合并）
-       → skill/*.md → 本技能的 references/
+"""从 jshdcn/underground-slang-lexicon 的 main 分支拉取 skill/*.md，
+并更新到本仓库的 references/。
 
 用法：
   python3 scripts/pull_slang_dict.py            # 有更新才写盘
