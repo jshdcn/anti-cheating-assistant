@@ -22,8 +22,8 @@
 | 第九章 一百个人以上时如何做反作弊 | 930–1084 | 节流、开源（卖数据/卖服务/卖产品）、寓兵于民 | — |
 | 附录一 如何做移动安全 | 1085–1190 | 基础攻防、设备指纹、设备可信度、多源复合定位 | playbook-mobile-security.md |
 | 附录二 如何做账号安全 | 1191–1384 | 账号准入、核身、鉴权、关联、染色、黑名单 | playbook-account-security.md |
-| 附录三 如何做交易安全 | 1385–1454 | 风险标签、风险定义（SOP/模型/立法）、风险防控 | playbook-transaction-security.md |
-| 附录四 如何做营销安全 | 1455–1754 | 营销四要素、ROI、奖励激励风控、支付核销风控 | playbook-marketing-security.md |
+| 附录三 如何做交易安全 | 1385–1448 | 风险标签、风险定义（SOP/模型/立法）、风险防控 | playbook-transaction-security.md |
+| 附录四 如何做营销安全 | 1449–1740 | 营销四要素、ROI、奖励激励风控、支付核销风控 | playbook-marketing-security.md |
 | 附录五 如何做内容安全 | 1741–1799 | 采集安全、发布安全 | playbook-content-security.md |
 | 附录六 如何做资金安全 | 1800–1984 | 财产安全、信贷安全、支付安全（反洗钱/反套现/反恐怖融资/反二清/反虚开发票） | playbook-financial-security.md |
 
